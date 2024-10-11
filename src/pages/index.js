@@ -1,6 +1,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -100,8 +101,9 @@ export default function Home() {
         <ul>
           {notes.map((note) => (
             <li key={note.id}>
-              <h2>{note.title || "Untitled"}</h2>
-              <p>{note.content}</p>
+              <Link href={`/notes/${note.id}`}>
+                {note.title}
+              </Link>
             </li>
           ))}
         </ul>

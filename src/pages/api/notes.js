@@ -1,16 +1,15 @@
-import { getSession } from "next-auth/react";
-import prisma from "@/lib/prisma"; // Assuming you have Prisma set up in a `lib/prisma.js` file
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]"; // Corrected relative path
+import prisma from "@/lib/prisma";
 
 export default async function handler(req, res) {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
 
-  // Check if user is authenticated
   if (!session) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   if (req.method === 'GET') {
-    // Fetch the user's notes from the database
     try {
       const notes = await prisma.note.findMany({
         where: {
@@ -25,7 +24,6 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: "Error fetching notes", error });
     }
   } else if (req.method === 'POST') {
-    // Create a new note
     const { title, content } = req.body;
 
     if (!title || !content) {
@@ -41,7 +39,7 @@ export default async function handler(req, res) {
         data: {
           title,
           content,
-          userId: user.id, // Associate the note with the logged-in user
+          userId: user.id,
         },
       });
 
