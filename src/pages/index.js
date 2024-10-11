@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     if (status === "loading") return; // Do nothing while session is loading
-
+    console.log("Session:", session); 
     if (!session) {
       // Redirect to sign-in page if the user is not signed in
       router.push("/signin");
@@ -59,31 +59,46 @@ export default function Home() {
   }
 
   return (
-    <>
-      <h1>Welcome, {session.user.name}!</h1>
-      <p>Signed in as {session.user.email}</p>
-      <button onClick={() => signOut()}>Sign out</button>
+    <div className="container">
+      <header className="header">
+        <div className="user-info">
+          {/* {session.user.image && (
+            <img src={session.user.image} alt="User's Google photo" className="profile-photo" />
+          )} */}
+          <div>
+            <h1>Welcome, {session.user.name}!</h1>
+            <p>Signed in as {session.user.email}</p>
+          </div>
+        </div>
+        <button onClick={() => signOut()} className="signout-btn">
+          Sign out
+        </button>
+      </header>
 
-      <h2>Your Notes</h2>
-      <button onClick={handleCreateNote} disabled={loading}>
-        {loading ? "Creating..." : "Create New Note"}
-      </button>
+      <main>
+        <div className="notes-header">
+          <h2>Your Notes</h2>
+          <button onClick={handleCreateNote} className="create-btn" disabled={loading}>
+            {loading ? "Creating..." : "Create New Note"}
+          </button>
+        </div>
 
-      {loadingNotes ? (
-        <p>Loading your notes...</p>
-      ) : notes.length > 0 ? (
-        <ul>
-          {notes.map((note) => (
-            <li key={note.id}>
-              <Link href={`/notes/${note.id}`}>
-                {note.title}
+        {loadingNotes ? (
+          <p>Loading your notes...</p>
+        ) : notes.length > 0 ? (
+          <ul className="notes-list">
+            {notes.map((note) => (
+              <Link className="note-link" key={note.id} href={`/notes/${note.id}`} passHref>
+                <li className="note-item">
+                  {note.title}
+                </li>
               </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>You have no notes yet.</p>
-      )}
-    </>
+            ))}
+          </ul>
+        ) : (
+          <p>You have no notes yet.</p>
+        )}
+      </main>
+    </div>
   );
 }
