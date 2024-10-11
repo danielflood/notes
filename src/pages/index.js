@@ -8,8 +8,6 @@ export default function Home() {
   const router = useRouter();
   const [notes, setNotes] = useState([]);
   const [loadingNotes, setLoadingNotes] = useState(true);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -35,26 +33,17 @@ export default function Home() {
     }
   }, [session, status, router]);
 
-  const handleCreateNote = async (e) => {
-    e.preventDefault();
-    if (!title || !content) return; // Ensure title and content are filled out
-
+  const handleCreateNote = async () => {
     setLoading(true);
 
     try {
       const res = await fetch("/api/notes", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
       });
 
       if (res.ok) {
         const newNote = await res.json();
         setNotes([...notes, newNote]); // Add the new note to the existing list
-        setTitle(""); // Clear the form
-        setContent("");
       } else {
         console.error("Failed to create note");
       }
@@ -75,25 +64,10 @@ export default function Home() {
       <p>Signed in as {session.user.email}</p>
       <button onClick={() => signOut()}>Sign out</button>
 
-      <h2>Create a New Note</h2>
-      <form onSubmit={handleCreateNote}>
-        <input
-          type="text"
-          placeholder="Note title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Note content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create Note"}
-        </button>
-      </form>
+      <h2>Your Notes</h2>
+      <button onClick={handleCreateNote} disabled={loading}>
+        {loading ? "Creating..." : "Create New Note"}
+      </button>
 
       {loadingNotes ? (
         <p>Loading your notes...</p>
