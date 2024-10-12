@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -7,22 +7,25 @@ export default function SignInPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "loading") return; // Do nothing while session is loading
+    if (status === "loading") return;
 
     if (session) {
-      // Redirect to sign-in page if the user is not signed in
-      router.push("/");
+      router.push("/"); // Redirect if signed in
     }
   }, [session, status, router]);
 
   if (session) {
     return <p>Redirecting...</p>;
   }
-  
+
   return (
-    <>
-      <p>Not signed in</p>
-      <button onClick={() => signIn("google")}>Sign in with Google</button>
-    </>
+    <div className="signin-container">
+      <h1>Welcome to the Notes App</h1>
+      <p>Please sign in to continue</p>
+      <button className="google-signin-btn" onClick={() => signIn("google")}>
+        <img src="/google-logo.svg" alt="Google logo" className="google-logo" />
+        Sign in with Google
+      </button>
+    </div>
   );
 }

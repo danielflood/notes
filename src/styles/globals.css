@@ -146,3 +146,49 @@ a:visited {
 a:hover {
   text-decoration: none;
 }
+
+/* Sign-In Page Styles */
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.signin-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.signin-container p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+/* Sign-In Button Styles */
+.google-signin-btn {
+  background-color: white; /* Google's recommended white background */
+  color: #757575; /* Grey color for the text */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.google-signin-btn:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.8rem;
+}
