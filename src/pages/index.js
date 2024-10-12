@@ -2,6 +2,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -62,9 +63,9 @@ export default function Home() {
     <div className="container">
       <header className="header">
         <div className="user-info">
-          {/* {session.user.image && (
-            <img src={session.user.image} alt="User's Google photo" className="profile-photo" />
-          )} */}
+          {session.user.image && (
+            <Image width="50" height="50" src={session.user.image} alt="User's Google photo" className="profile-photo" />
+          )}
           <div>
             <h1>Welcome, {session.user.name}!</h1>
             <p>Signed in as {session.user.email}</p>
