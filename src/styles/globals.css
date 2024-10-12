@@ -192,3 +192,77 @@ a:hover {
   height: 20px;
   margin-right: 0.8rem;
 }
+
+/* Editor */
+/* Styling for the editor */
+.editor-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.back-btn {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 1rem;
+}
+
+.back-btn:hover {
+  background-color: #005bb5;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.title-input {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.content-editor {
+  height: 300px;
+  margin-bottom: 5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.update-btn, .delete-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: #0070f3;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #005bb5;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #ff6666;
+}
