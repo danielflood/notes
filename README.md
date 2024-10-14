@@ -1,7 +1,7 @@
 # Dan's simple notetaking app
 This is a very simple note taking app I created using NextJS, NextAuth and a Prisma/SQLite DB.
 
-This was create for fun, but it's live and can be used at notes.danielflood.com
+This was created for fun, but it's live and can be used at notes.danielflood.com
 
 I have no further plans to maintain this project but feel free to use it.
 
