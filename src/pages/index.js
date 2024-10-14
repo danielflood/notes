@@ -13,7 +13,6 @@ export default function Home() {
 
   useEffect(() => {
     if (status === "loading") return; // Do nothing while session is loading
-    console.log("Session:", session); 
     if (!session) {
       // Redirect to sign-in page if the user is not signed in
       router.push("/signin");
