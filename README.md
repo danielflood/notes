@@ -1,40 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dan's simple notetaking app
+This is a very simple note taking app I created using NextJS, NextAuth and a Prisma/SQLite DB.
 
-## Getting Started
+This was create for fun, but it's live and can be used at notes.danielflood.com
 
-First, run the development server:
+I have no further plans to maintain this project but feel free to use it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Running your own version locally
+### Prerequisites
+- NodeJS (I've only tested this with version 20.18.0).
+- A Google Cloud Platform account and the knowledge of how to setup Oauth2 credentials.
+
+### Steps
+1. Clone the repo.
+2. Setup your environment variables, you will need to create Oauth2 credentials on Google Cloud.
+```.env
+GOOGLE_CLIENT_ID=xxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+NEXTAUTH_URL=http://localhost:3000 #Your redirect URI
+NEXTAUTH_SECRET=xxxxxxxxxxxxxxxxxxxxxxx #Your personal app secret
 ```
+4. Run `npm i`
+5. Run `npx prisma migrate dev`
+6. Run `npm run dev`
+7. Enjoy x
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Notes
+- The hardest part for running this project is probably to create your Oauth2 credentials. However, there are plenty resources for this on YouTube. 
+- I started creating a template endpoint for analytics at /api/log, I didn't bother adding it in the end, but I may come back to it someday. If anyone want's to give it a go please feel free.
